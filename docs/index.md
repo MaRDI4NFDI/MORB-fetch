@@ -20,7 +20,7 @@ Authors:
 Affiliation:
 - [Max Planck Institute for Dynamics of Complex Technical Systems](https://www.mpi-magdeburg.mpg.de), Magdeburg, Germany.
 
-Source Repository: [https://github.com/ashwin-nayak/morb-fetch](https://github.com/ashwin-nayak/morb-fetch)
+Source Repository: [https://github.com/mardi4nfdi/morb-fetch](https://github.com/mardi4nfdi/morb-fetch)
 
 License: BSD 3-Clause.
 
