@@ -13,7 +13,7 @@ pooch_logger.setLevel("WARNING")
 
 class ToolkitDownloader(BaseModel):
     """
-    A class to download MORLAB releases from Zenodo
+    Base Downloader class for Toolkits from Zenodo
     """
     name: ClassVar[str]
     registry: ClassVar[dict[str, DOIstr]]
