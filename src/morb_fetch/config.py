@@ -40,6 +40,7 @@ DEFAULT_CACHE_PATH = user_cache_path(
 )
 DEFAULT_MMESS_PATH = DEFAULT_CACHE_PATH / "MMESS"
 DEFAULT_MORLAB_PATH = DEFAULT_CACHE_PATH / "morlab"
+DEFAULT_TECTONIC_PATH = DEFAULT_CACHE_PATH / "tectonic"
 
 class Settings(BaseSettings):
     """
@@ -60,6 +61,7 @@ class Settings(BaseSettings):
     cache: Path = DEFAULT_CACHE_PATH
     mmess_path: Path = DEFAULT_MMESS_PATH
     morlab_path: Path = DEFAULT_MORLAB_PATH
+    tectonic_path: Path = DEFAULT_TECTONIC_PATH
 
     # Pydantic Model config: to import the settings from environment variables
     model_config = SettingsConfigDict(
@@ -184,6 +186,8 @@ def create_config(yaml_path: Path):
         f'mmess_path: "{str(DEFAULT_MMESS_PATH)}"\n'
         "# Custom MORLAB location\n"
         f'morlab_path: "{str(DEFAULT_MORLAB_PATH)}"\n'
+        "# Custom TECTONIC location\n"
+        f'tectonic_path: "{str(DEFAULT_TECTONIC_PATH)}"\n'
     )
 
     if yaml_path.exists():

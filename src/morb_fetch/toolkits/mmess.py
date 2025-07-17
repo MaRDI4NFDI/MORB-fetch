@@ -1,8 +1,8 @@
-from morb_fetch.toolkits.toolkit import ToolkitDownloader
+from morb_fetch.toolkits.toolkit import ZenodoToolkitDownloader
 from morb_fetch.config import get_config
 
 
-class MMESSDownloader(ToolkitDownloader):
+class MMESSDownloader(ZenodoToolkitDownloader):
     name = "MMESS"
     registry = {
         "3.1": "doi:10.5281/zenodo.14929081",

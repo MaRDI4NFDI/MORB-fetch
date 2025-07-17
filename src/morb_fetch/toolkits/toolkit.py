@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 import pooch
 import logging
 from typing import ClassVar
@@ -11,13 +12,29 @@ pooch_logger = pooch.get_logger()
 pooch_logger.setLevel("WARNING")
 
 
-class ToolkitDownloader(BaseModel):
+class ToolkitDownloader(BaseModel, ABC):
     """
-    Base Downloader class for Toolkits from Zenodo
+    Base Downloader class for Toolkits
     """
     name: ClassVar[str]
     registry: ClassVar[dict[str, DOIstr]]
     download_path: ClassVar[Path]
+
+    @classmethod
+    @abstractmethod
+    def list_available_versions(cls) -> list[str]:
+        ...
+
+    @classmethod
+    @abstractmethod
+    def retrieve_version(cls, version: str) -> str:
+        ...
+
+
+class ZenodoToolkitDownloader(ToolkitDownloader):
+    """
+    Base Downloader class for Toolkits from Zenodo
+    """
 
     @classmethod
     def list_available_versions(cls) -> list[str]:

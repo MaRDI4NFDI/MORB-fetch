@@ -24,8 +24,10 @@ from morb_fetch.examples import (
 )
 from morb_fetch.toolkits import (
     ToolkitDownloader,
+    ZenodoToolkitDownloader,
     MORLABDownloader,
     MMESSDownloader,
+    TectonicDownloader,
 )
 
 
@@ -47,6 +49,8 @@ __all__ = [
     "ToolkitDownloader",
     "MORLABDownloader",
     "MMESSDownloader",
+    "ZenodoToolkitDownloader",
+    "TectonicDownloader",
     "get_database",
     "loadmat",
 ]
