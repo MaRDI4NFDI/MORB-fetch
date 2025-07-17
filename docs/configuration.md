@@ -96,6 +96,16 @@ The zip file is kept in the same directory for future reference.
 - **Environment Variable**: `MORBFETCH_MORLAB_PATH`
 - **YAML Key**: `morlab_path`
 
+### TECTONIC Download Path
+
+The specific subdirectory for storing [TECTONIC](https://tectonic-typesetting.github.io) binaries.
+TECTONIC is downloaded as a `tar.gz` file (for Unix and Mac-OS) or a `zip` file (for Windows) from it's [Github Releases](https://github.com/tectonic-typesetting/tectonic/releases) page and unzipped into this directory.
+The compressed file is kept in the same directory for future reference.
+
+- **Default**: A folder named `tectonic` inside the Cache Location (e.g., `~/.cache/morb/tectonic`).
+- **Environment Variable**: `MORBFETCH_TECTONIC_PATH`
+- **YAML Key**: `tectonic_path`
+
 ## Using a Configuration File
 
 Using environment variables can be inconvenient for complex setups or when you want to share configurations across multiple users or machines.
@@ -149,6 +159,9 @@ mmess_path: "/path/to/MMESS"
 
 # The path to the MORLAB download directory (absolute path).
 morlab_path: "/path/to/morlab"
+
+# The path to the TECTONIC download directory (absolute path).
+tectonic_path: "/path/to/tectonic"
 ```
 
 ### Managing Configuration Files

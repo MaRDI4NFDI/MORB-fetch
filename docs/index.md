@@ -4,7 +4,7 @@ A configurable data (and metadata) fetcher for datasets and toolkits used in Mod
 
 Features:
 - Easy dataset selection, download, extraction
-- Downloaders for MORLAB and M-MESS toolkits
+- Downloaders for MORLAB, M-MESS and Tectonic toolkits
 - Flexible configuration options and dataset-caching
 - Strict type checking
 - Integration with MORB for seamless benchmarking
