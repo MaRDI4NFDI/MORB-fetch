@@ -53,7 +53,6 @@ def setup_logging():
     logger = logging.getLogger("morb_fetch")
     logger.setLevel(logging.INFO)
     handler = RichHandler(
-        # rich_tracebacks=True,
         markup=True,
         show_time=False,
         show_level=False,
@@ -61,5 +60,4 @@ def setup_logging():
     )
     formatter = logging.Formatter("[orange1]morb_fetch[/orange1]: %(message)s")
     handler.setFormatter(formatter)
-    # handler.setLevel(logging.INFO)
     logger.addHandler(handler)
