@@ -27,8 +27,8 @@ from morb_fetch.toolkits import (
     ZenodoToolkitDownloader,
     MORLABDownloader,
     MMESSDownloader,
-    TectonicDownloader,
 )
+from morb_fetch.bindings import TectonicDownloader
 
 
 __all__ = [
