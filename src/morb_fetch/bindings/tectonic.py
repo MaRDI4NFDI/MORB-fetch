@@ -16,6 +16,7 @@ class TectonicDownloader:
         "0.15.0"
     ]
     download_path = get_config().tectonic_path
+    REPO_URL = "https://github.com/tectonic-typesetting/tectonic"
 
     @classmethod
     def list_available_versions(cls) -> list[str]:
@@ -30,7 +31,8 @@ class TectonicDownloader:
         Retrieve a specific version of Tectonic
         """
         # URL format
-        BASE_URL = "https://github.com/tectonic-typesetting/tectonic/releases/download/tectonic@{version}/{filename}"
+        BASE_URL = cls.REPO_URL + "/releases/download/tectonic@{version}/{filename}"
+
         # Filename format
         BASE_FILENAME='tectonic-{version}-{arch}-{machine}-{os}'
         # Machine name for each platform
@@ -58,10 +60,11 @@ class TectonicDownloader:
         )
 
         # Post download extraction
+        extract_dir = f"{cls.name}-{version}"
         postprocessor = (
-            pooch.Untar(extract_dir=f"{cls.name}-{version}")
+            pooch.Untar(extract_dir=extract_dir)
             if fileext == "tar.gz"
-            else pooch.Unzip(extract_dir=f"{cls.name}-{version}")
+            else pooch.Unzip(extract_dir=extract_dir)
         )
 
         # Download file
@@ -73,7 +76,8 @@ class TectonicDownloader:
             progressbar=True,
             processor=postprocessor
         )
-        unzip_path = cls.download_path / f"{cls.name}-{version}"
+        unzip_path = cls.download_path / extract_dir
+        exec_path = unzip_path / "tectonic"
         logger.info(f"{cls.name}-{version} downloaded at {unzip_path}")
 
-        return filename
+        return str(exec_path)
