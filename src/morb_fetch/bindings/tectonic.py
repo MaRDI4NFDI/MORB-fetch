@@ -41,22 +41,38 @@ class TectonicDownloader:
 
         # Filename format
         BASE_FILENAME='tectonic-{version}-{arch}-{machine}-{os}'
+
         # Machine name for each platform
         machine = {
-            "windows": "pc",
+            "win32": "pc",
             "darwin": "apple",
             "linux": "unknown"
         }
+        # Architecture for each platform
+        arch = platform.machine().lower()
+        if arch in ['amd64', 'x86_64']:
+            arch = 'x86_64'
+        elif arch in ['arm64', 'aarch64']:
+            arch = 'arm64'
 
+        operating_system = platform.system().lower()
         # Generate filename
         filebase = BASE_FILENAME.format(
             version=version,
-            arch=platform.machine(),
+            arch=arch,
             machine=machine[sys.platform],
-            os=sys.platform
+            os=operating_system
         )
-        filebase = filebase + "-gnu" if sys.platform != "darwin" else filebase
-        fileext = "zip" if sys.platform=="windows" else "tar.gz"
+
+        # Compiler
+        compiler = {
+            "win32": "msvc",
+            "linux": "gnu"
+        }
+        if sys.platform != "darwin":
+            filebase = f"{filebase}-{compiler[sys.platform]}"
+
+        fileext = "zip" if sys.platform=="win32" else "tar.gz"
         filename = f"{filebase}.{fileext}"
 
         # Generate URL
@@ -83,7 +99,8 @@ class TectonicDownloader:
             processor=postprocessor
         )
         unzip_path = cls.download_path / extract_dir
-        exec_path = unzip_path / "tectonic"
+        exec = "tectonic.exe" if operating_system == "windows" else "tectonic"
+        exec_path = unzip_path / exec
         logger.info(f"{cls.name}-{version} downloaded at {unzip_path}")
 
         return str(exec_path)
