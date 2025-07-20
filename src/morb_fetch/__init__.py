@@ -28,7 +28,10 @@ from morb_fetch.toolkits import (
     MORLABDownloader,
     MMESSDownloader,
 )
-from morb_fetch.bindings import TectonicDownloader
+from morb_fetch.bindings import (
+    TectonicDownloader,
+    TectonicBiberDownloader,
+)
 
 
 __all__ = [
@@ -51,6 +54,7 @@ __all__ = [
     "MMESSDownloader",
     "ZenodoToolkitDownloader",
     "TectonicDownloader",
+    "TectonicBiberDownloader",
     "get_database",
     "loadmat",
 ]
