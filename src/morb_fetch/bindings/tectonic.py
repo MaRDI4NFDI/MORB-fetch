@@ -135,34 +135,21 @@ class TectonicBiberDownloader:
     def retrieve_version(cls, version: str) -> str:
         BASE_URL = (
             cls.REPO_URL
-            + "/files/biblatex-biber/{version}/binaries/{os}/{filename}/download"
+            + f"/files/biblatex-biber/{version}/binaries/"
         )
-        architecture = {
-            "x86_64" : "x86_64",
-            "arm64" : "universal"
-        }
-        operating_system = {
-            "linux" : "Linux",
-            "darwin" : "MacOS",
-            "win32" : "Windows"
+
+        os_specific_url_addon = {
+            "linux" : "Linux/biber-linux_x86_64.tar.gz/download",
+            "darwin" : "MacOS/biber-darwin_universal.tar.gz/download",
+            "win32" : "Windows/biber-MSWIN64.zip/download"
         }
 
-        filename = "biber-{os}_{arch}.tar.gz".format(
-            os=sys.platform.lower(),
-            arch=architecture[platform.machine().lower()]
-        ) if operating_system[sys.platform] != "Windows" else "biber-MSWIN64.zip"
-
-        url = BASE_URL.format(
-            version=version,
-            os=operating_system[sys.platform],
-            arch=platform.machine().lower(),
-            filename=filename
-        )
+        url = BASE_URL + os_specific_url_addon[sys.platform]
 
         extract_dir = f"{cls.name}-{version}"
         postprocessor = (
             pooch.Untar(extract_dir=extract_dir)
-            if operating_system[sys.platform] != "Windows"
+            if sys.platform != "win32"
             else pooch.Unzip(extract_dir=extract_dir)
         )
         pooch.retrieve(
