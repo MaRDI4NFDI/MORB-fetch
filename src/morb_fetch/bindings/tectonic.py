@@ -100,7 +100,7 @@ class TectonicDownloader:
         )
         unzip_path = cls.download_path / extract_dir
         exec = "tectonic.exe" if operating_system == "windows" else "tectonic"
-        exec_path = unzip_path / exec
+        exec_path = (unzip_path / exec).resolve()
         logger.info(f"{cls.name}-{version} downloaded at {unzip_path}")
 
         return str(exec_path)
@@ -161,6 +161,6 @@ class TectonicBiberDownloader:
             known_hash=None
         )
 
-        unzip_path = cls.download_path / extract_dir
+        unzip_path = (cls.download_path / extract_dir).resolve()
 
         return str(unzip_path)
