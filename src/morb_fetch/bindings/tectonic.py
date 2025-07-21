@@ -137,22 +137,39 @@ class TectonicBiberDownloader:
             cls.REPO_URL
             + "/files/biblatex-biber/{version}/binaries/{os}/{filename}/download"
         )
+        architecture = {
+            "x86_64" : "x86_64",
+            "arm64" : "universal"
+        }
+        operating_system = {
+            "linux" : "Linux",
+            "darwin" : "MacOS",
+            "win32" : "Windows"
+        }
+
         filename = "biber-{os}_{arch}.tar.gz".format(
             os=sys.platform.lower(),
-            arch=platform.machine().lower()
-        )
+            arch=architecture[platform.machine().lower()]
+        ) if operating_system[sys.platform] != "Windows" else "biber-MSWIN64.zip"
+
         url = BASE_URL.format(
             version=version,
-            os=sys.platform.capitalize(),
+            os=operating_system[sys.platform],
             arch=platform.machine().lower(),
             filename=filename
         )
-        extract_dir = cls.download_path / f"{cls.name}-{version}"
+
+        extract_dir = f"{cls.name}-{version}"
+        postprocessor = (
+            pooch.Untar(extract_dir=extract_dir)
+            if operating_system[sys.platform] != "Windows"
+            else pooch.Unzip(extract_dir=extract_dir)
+        )
         pooch.retrieve(
             url=url,
             fname=f"biber-{version}.tar.gz",
             path=cls.download_path,
-            processor=pooch.Untar(extract_dir=extract_dir),
+            processor=postprocessor,
             progressbar=True,
             known_hash=None
         )
