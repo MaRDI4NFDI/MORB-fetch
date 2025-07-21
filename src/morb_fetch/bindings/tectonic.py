@@ -53,7 +53,7 @@ class TectonicDownloader:
         if arch in ['amd64', 'x86_64']:
             arch = 'x86_64'
         elif arch in ['arm64', 'aarch64']:
-            arch = 'arm64'
+            arch = 'aarch64'
 
         operating_system = platform.system().lower()
         # Generate filename
