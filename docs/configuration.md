@@ -82,17 +82,17 @@ The specific subdirectory for storing MMESS.
 MMESS is downloaded as a zip file from it's [Zenodo registry](https://zenodo.org/records/14929081) and unzipped into this directory.
 The zip file is kept in the same directory for future reference.
 
-- **Default**: A folder named `MMESS` inside the Cache Location (e.g., `~/.cache/morb/MMESS`).
+- **Default**: A folder named `MMESS` inside the cache location (e.g., `~/.cache/morb/MMESS`).
 - **Environment Variable**: `MORBFETCH_MMESS_PATH`
 - **YAML Key**: `mmess_path`
 
 ### MORLAB Download Path
 
 The specific subdirectory for storing MORLAB.
-MMESS is downloaded as a zip file from it's [Zenodo registry](https://zenodo.org/records/7072831) and unzipped into this directory.
+MORLAB is downloaded as a zip file from it's [Zenodo registry](https://zenodo.org/records/7072831) and unzipped into this directory.
 The zip file is kept in the same directory for future reference.
 
-- **Default**: A folder named `morlab` inside the Cache Location (e.g., `~/.cache/morb/morlab`).
+- **Default**: A folder named `morlab` inside the cache location (e.g., `~/.cache/morb/morlab`).
 - **Environment Variable**: `MORBFETCH_MORLAB_PATH`
 - **YAML Key**: `morlab_path`
 

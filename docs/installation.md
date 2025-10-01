@@ -80,7 +80,7 @@ matrices = example.data
 print("Loaded matrices:", matrices.keys())
 ```
 
-:::note[Package Naming Convention]
+:::{note[Package Naming Convention]}
 The installable package name uses a hyphen (`morb-fetch`), but the importable Python module uses an underscore (`morb_fetch`).
 This is a common convention in the Python ecosystem.
 :::
